@@ -11,4 +11,9 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
     
+    public String toString() {
+    	return "CPF: " + this.cpf
+    		+ " - Nome: " + this.nome
+    		+ " - Telefone: " + this.telefone;
+    }
 }

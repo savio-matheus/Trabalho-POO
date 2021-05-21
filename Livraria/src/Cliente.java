@@ -8,4 +8,13 @@ public class Cliente extends Pessoa{
         super(cpf, nome, telefone);
     }
     
+    boolean comprar(Produto p, int quantidade);
+
+    public String toString() {
+        String tmp = super.toString() + "\n";
+
+        for (Produto i : sacola) {
+            tmp += i.toString();
+        }
+    }
 }

@@ -10,4 +10,8 @@ public abstract class Empresa {
         this.nome = nome;
         this.telefone = telefone;
     }
+
+    public String toString() {
+    	
+    }
 }
