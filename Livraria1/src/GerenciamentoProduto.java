@@ -2,7 +2,7 @@
 import javax.swing.JOptionPane;
 
 public class GerenciamentoProduto {
-    static Produto buscarProduto(Livraria l) {
+    static Produto buscar(Livraria l) {
         int codigo = entradaInt("Codigo do produto");
         Produto p = l.buscarProduto(codigo);
         
@@ -14,7 +14,7 @@ public class GerenciamentoProduto {
         return p;
     }
     
-    static void alterarProduto(Livraria l) {
+    static void alterar(Livraria l) {
         int codigo = entradaInt("Codigo do produto a ser alterado");
         Produto p = null;
         int op = -1;
@@ -62,7 +62,7 @@ public class GerenciamentoProduto {
         }
     }
     
-    static void excluirProduto(Livraria l) {
+    static void excluir(Livraria l) {
         int codigo = entradaInt("Codigo do produto a ser excluído");
         int quantidade = entradaInt("Quantidade a ser excluída");
         if (l.removerProduto(codigo) == 1) {
@@ -72,7 +72,7 @@ public class GerenciamentoProduto {
         }
     }
     
-    static void adicionarProduto(Livraria l) {
+    static void adicionar(Livraria l) {
     Fornecedor f;
     String cnpjFornecedor = "";
         
@@ -92,17 +92,21 @@ public class GerenciamentoProduto {
     }
 
     mostrarMensagem("Cadastre a seguir os dados do produto");
-    Produto p = new Livro(
-            entradaInt("Código"),
-            entradaString("Nome"),
-            entradaDouble("Preço de Custo"),
-            entradaDouble("Preço de Venda"),
-            entradaInt("Quantidade"),
-            f,
-            entradaString("Autor"),
-            entradaString("Editora"),
-            entradaString("Data da compra")
-    );
+        Produto p = new Livro(
+                entradaInt("Código"),
+                entradaString("Nome"),
+                entradaDouble("Preço de Custo"),
+                entradaDouble("Preço de Venda"),
+                entradaInt("Quantidade"),
+                f,
+                entradaString("Autor"),
+                entradaString("Editora"),
+                entradaString("Data da compra")
+        );
+    }
+    
+    static void listar(Livraria l) {
+        return;
     }
     
     static int entradaInt(String msg) {

@@ -64,194 +64,6 @@ public class Main {
         }
     }
     
-    static void gerenciarProdutos(Livraria l) {
-        int op = entradaInt(
-                "O que você deseja fazer?\n"
-                + "1. Listar\n"
-                + "2. Adicionar\n"
-                + "3. Excluir\n"
-                + "4. Alterar\n"
-                + "5. Buscar"
-        );
-        
-        switch(op) {
-            case 1:
-                mostrarMensagem(l.listarProdutos());
-                break;
-            case 2:
-                adicionarProduto(l);
-                break;
-                
-            case 3:
-                excluirProduto(l);
-                break;
-            
-            case 4:
-                alterarProduto(l);
-                break;
-            
-            case 5:
-                mostrarMensagem(buscarProduto(l).toString());
-        }
-    }
-    
-    static void gerenciarFornecedores(Livraria l) {
-        int op = -1;
-        
-        op = entradaInt(
-                "O que você quer fazer?\n"
-                + "1. Listar\n"
-                + "2. Adicionar\n"
-                + "3. Excluir\n"
-                + "4. Alterar\n"
-                + "5. Buscar"
-        );
-        
-        switch (op) {
-            case 1:
-                listarFornecedores(l);
-            case 2:
-                adicionarFornecedor(l);
-            case 3:
-                excluirFornecedor(l);
-            case 4:
-                alterarFornecedor(l);
-            case 5:
-                buscarFornecedor(l);
-            default:
-        }
-    }
-    
-    static void gerenciarFuncionarios(Livraria l) {
-        int op = -1;
-        
-        op = entradaInt(
-                "O que você quer fazer?\n"
-                + "1. Listar\n"
-                + "2. Adicionar\n"
-                + "3. Excluir\n"
-                + "4. Alterar\n"
-                + "5. Buscar"
-        );
-        
-        switch (op) {
-            case 1:
-                listarFuncionarios(l);
-            case 2:
-                adicionarFuncionario(l);
-            case 3:
-                excluirFuncionario(l);
-            case 4:
-                alterarFuncionario(l);
-            case 5:
-                buscarFuncionario(l);
-            default:
-        }
-    }
-    
-    static Produto buscarProduto(Livraria l) {
-        int codigo = entradaInt("Codigo do produto");
-        Produto p = l.buscarProduto(codigo);
-        
-        if (p == null) {
-            mostrarMensagem("Produto não encontrado");
-            return null;
-        }
-        
-        return p;
-    }
-    
-    static void alterarProduto(Livraria l) {
-        int codigo = entradaInt("Codigo do produto a ser alterado");
-        Produto p = null;
-        int op = -1;
-
-        if (p == null) {
-            return;
-        }
-        p = buscarProduto(l);
-        op = entradaInt("O que você deseja alterar?"
-                + "1. Código\n"
-                + "2. Nome\n"
-                + "3. Preço de Custo\n"
-                + "4. Preço de Venda\n"
-                + "5. Quantidade\n"
-                + "6. Fornecedor\n"
-                + "7. Autor\n"
-                + "8. Editora"
-        );
-
-        switch (op) {
-            case 1:
-                l.setCodigo(entradaInt("Codigo"));
-                break;
-            case 2:
-                l.setNome(entradaString("Nome"));
-                break;
-            case 3:
-                l.setPrecoDeCusto(entradaDouble("Preço de Custo"));
-                break;
-            case 4:
-                l.setPrecoDeVenda(entradaDouble("Preço de Venda"));
-                break;
-            case 5:
-                l.setQuantidade(entradaInt("Quantidade"));
-                break;
-            case 6:
-                l.setFornecedor(); // adicionar função para selecionar fornecedor
-                break;
-            case 7:
-                l.setAutor(entradaString("Autor"));
-                break;
-            case 8:
-                l.setEditora(entradaString("Editora"));
-            default:
-        }
-    }
-    
-    static void excluirProduto(Livraria l) {
-        int codigo = entradaInt("Codigo do produto a ser excluído");
-        int quantidade = entradaInt("Quantidade a ser excluída");
-        if (l.removerProduto(codigo) == 1) {
-            mostrarMensagem("Produto não encontrado!");
-        } else {
-            mostrarMensagem("Produto removido com sucesso");
-        }
-    }
-    
-    static void adicionarProduto(Livraria l) {
-    Fornecedor f;
-    String cnpjFornecedor = "";
-        
-    if (l.temFornecedor()) {
-        mostrarMensagem("Não há fornecedores cadastrados");
-        return;
-    }
-
-    mostrarMensagem("A seguir será mostrada uma lista de fornecedores");
-    mostrarMensagem(l.listarFornecedores());
-    cnpjFornecedor = entradaString("Digite o CNPJ de um fornecedor");
-    f = l.buscarFornecedor(cnpjFornecedor);
-
-    if (f == null) {
-        mostrarMensagem("CNPJ não encontrado");
-        return;
-    }
-
-    mostrarMensagem("Cadastre a seguir os dados do produto");
-    Produto p = new Livro(
-            entradaInt("Código"),
-            entradaString("Nome"),
-            entradaDouble("Preço de Custo"),
-            entradaDouble("Preço de Venda"),
-            entradaInt("Quantidade"),
-            f,
-            entradaString("Autor"),
-            entradaString("Editora"),
-            entradaString("Data da compra")
-    );
-    }
-    
     static void listarLivrarias(ArrayList<Livraria> lista) {
         for (Livraria liv : lista) {
             mostrarMensagem(liv.toString());
@@ -318,6 +130,94 @@ public class Main {
                 mostrarMensagem("Novo endereço");
                 liv.setEndereco(escreverEndereco());
                 break;
+            default:
+        }
+    }
+    
+    static void gerenciarProdutos(Livraria l) {
+        GerenciamentoProduto produto = new GerenciamentoProduto();
+        int op = entradaInt(
+                "O que você deseja fazer?\n"
+                + "1. Listar\n"
+                + "2. Adicionar\n"
+                + "3. Excluir\n"
+                + "4. Alterar\n"
+                + "5. Buscar"
+        );
+        
+        switch(op) {
+            case 1:
+                mostrarMensagem(l.listarProdutos());
+                break;
+            case 2:
+                produto.adicionar(l);
+                break;
+                
+            case 3:
+                produto.excluir(l);
+                break;
+            
+            case 4:
+                produto.alterar(l);
+                break;
+            
+            case 5:
+                mostrarMensagem(produto.buscar(l).toString());
+        }
+    }
+    
+    static void gerenciarFornecedores(Livraria l) {
+        GerenciamentoFornecedores fornecedor = new GerenciamentoFornecedores();
+        int op = -1;
+        
+        op = entradaInt(
+                "O que você quer fazer?\n"
+                + "1. Listar\n"
+                + "2. Adicionar\n"
+                + "3. Excluir\n"
+                + "4. Alterar\n"
+                + "5. Buscar"
+        );
+        
+        switch (op) {
+            case 1:
+                fornecedor.listar(l);
+            case 2:
+                fornecedor.adicionar(l);
+            case 3:
+                fornecedor.excluir(l);
+            case 4:
+                fornecedor.alterar(l);
+            case 5:
+                fornecedor.buscar(l);
+            default:
+        }
+    }
+    
+    static void gerenciarFuncionarios(Livraria l) {
+        GerenciamentoFuncionario funcionario = new GerenciamentoFuncionario();
+        int op = -1;
+        
+        op = entradaInt(
+                "O que você quer fazer?\n"
+                + "1. Listar\n"
+                + "2. Adicionar\n"
+                + "3. Excluir\n"
+                + "4. Alterar\n"
+                + "5. Buscar"
+        );
+        
+        switch (op) {
+            case 1:
+                funcionario.listar(l);
+            case 2:
+                funcionario.adicionar(l);
+            case 3:
+                funcionario.excluir(l);
+            case 4:
+                funcionario.alterar(l);
+            case 5:
+                funcionario.buscar(l);
             default:
         }
     }

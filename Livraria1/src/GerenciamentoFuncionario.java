@@ -2,25 +2,24 @@
 import javax.swing.JOptionPane;
 
 public class GerenciamentoFuncionario {
-    private Livraria l;
     
-    static Funcionario buscar() {
+    static Funcionario buscar(Livraria l) {
         return null;
     }
     
-    static void alterar() {
+    static void alterar(Livraria l) {
         return;
     }
     
-    static void excluir() {
+    static void excluir(Livraria l) {
         return;
     }
     
-    static void adicionar() {
+    static void adicionar(Livraria l) {
         return;
     }
     
-    static void listar() {
+    static void listar(Livraria l) {
         return;
     }
     
