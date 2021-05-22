@@ -1,8 +1,8 @@
 
 public class Fornecedor extends Empresa{
-    Fornecedor(String cnpj, String nome, String telefone){
     
-        super(cnpj, nome, telefone);
-        
+    Fornecedor(String cnpj, String nome, String telefone, Endereco endereco){
+    
+        super(cnpj, nome, telefone, endereco);
     }
 }

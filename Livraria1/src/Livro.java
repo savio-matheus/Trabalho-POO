@@ -7,14 +7,22 @@ public class Livro extends Produto{
     protected String categoria;
     protected String editora;
     
-    Livro(int codigo, String nome, double precoDeCusto, double precoDeVenda, int quantidade, Fornecedor fornecedor, Date dataUltimaCompra, String isbn, String autor, String categoria, String editora){
-    
-        super(codigo, nome, quantidade, precoDeVenda);
+    Livro(int codigo, String nome, double precoDeCusto, double precoDeVenda,
+            int quantidade, Fornecedor fornecedor, Date dataUltimaCompra,
+            String isbn, String autor, String categoria, String editora){
+        
+        super(codigo, nome, precoDeCusto, precoDeVenda, quantidade, fornecedor, dataUltimaCompra);
         this.isbn = isbn;
         this.autor = autor;
         this.categoria = categoria;
         this.editora = editora;
     }
     
+    String dadosLivro() {
+        return "";
+    }
     
+    public String toString() {
+        return "";
+    }
 }
