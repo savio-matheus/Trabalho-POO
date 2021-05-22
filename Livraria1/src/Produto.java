@@ -7,10 +7,10 @@ public abstract class Produto {
     protected int codigo;
     protected double precoDeCusto;
     protected Fornecedor fornecedor;
-    protected Date dataUltimaCompra;
+    protected String dataUltimaCompra;
 
     Produto(int codigo, String nome, double precoDeCusto, double precoDeVenda,
-            int quantidade, Fornecedor fornecedor, Date dataUltimaCompra) {
+            int quantidade, Fornecedor fornecedor, String dataUltimaCompra) {
     	this.nome = nome;
     	this.quantidade = quantidade;
     	this.precoDeVenda = precoDeVenda;
