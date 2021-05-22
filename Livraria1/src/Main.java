@@ -149,46 +149,6 @@ public class Main {
         }
     }
     
-    static Fornecedor buscarFuncionario(Livraria l) {
-        return null;
-    }
-    
-    static void alterarFuncionario(Livraria l) {
-        return;
-    }
-    
-    static void excluirFuncionario(Livraria l) {
-        return;
-    }
-    
-    static void adicionarFuncionario(Livraria l) {
-        return;
-    }
-    
-    static void listarFuncionarios(Livraria l) {
-        return;
-    }
-    
-    static Fornecedor buscarFornecedor(Livraria l) {
-        return null;
-    }
-    
-    static void alterarFornecedor(Livraria l) {
-        return;
-    }
-    
-    static void excluirFornecedor(Livraria l) {
-        return;
-    }
-    
-    static void adicionarFornecedor(Livraria l) {
-        return;
-    }
-    
-    static void listarFornecedores(Livraria l) {
-        return;
-    }
-    
     static Produto buscarProduto(Livraria l) {
         int codigo = entradaInt("Codigo do produto");
         Produto p = l.buscarProduto(codigo);
