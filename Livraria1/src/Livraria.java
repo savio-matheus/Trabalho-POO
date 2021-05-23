@@ -19,7 +19,7 @@ public class Livraria extends Empresa {
         return null;
     }
     
-    void cadastrarProduto() {
+    void adicionarProduto() {
         return;
     }
     
@@ -27,11 +27,15 @@ public class Livraria extends Empresa {
         return "";
     }
     
-    void contratarFuncionario() {
+    int alterarProduto() {
+        return 0;
+    }
+    
+    void adicionarFuncionario() {
         return;
     }
     
-    void demitirFuncionario() {
+    void excluirFuncionario() {
         return;
     }
     
@@ -39,11 +43,15 @@ public class Livraria extends Empresa {
         return;
     }
     
-    void alterarFuncionarios() {
+    void alterarFuncionario() {
         return;
     }
     
-    void cadastrarFornecedor() {
+    Funcionario buscarFuncionario(String cpf) {
+        return null;
+    }
+    
+    void adicionarFornecedor() {
         return;
     }
     

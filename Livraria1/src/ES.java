@@ -1,27 +1,7 @@
 
 import javax.swing.JOptionPane;
 
-public class GerenciamentoFuncionario {
-    
-    static Funcionario buscar(Livraria l) {
-        return null;
-    }
-    
-    static void alterar(Livraria l) {
-        return;
-    }
-    
-    static void excluir(Livraria l) {
-        return;
-    }
-    
-    static void adicionar(Livraria l) {
-        return;
-    }
-    
-    static void listar(Livraria l) {
-        return;
-    }
+public class ES {
     
     static int entradaInt(String msg) {
         String valor = JOptionPane.showInputDialog(msg);
@@ -39,5 +19,14 @@ public class GerenciamentoFuncionario {
     
     static void mostrarMensagem(String msg) {
         JOptionPane.showMessageDialog(null, msg);
+    }
+    
+    static Endereco escreverEndereco() {
+        return new Endereco(
+                entradaString("Rua: "),
+                entradaString("Bairro: "),
+                entradaString("Cidade: "),
+                entradaString("Estado: ")
+        );
     }
 }
