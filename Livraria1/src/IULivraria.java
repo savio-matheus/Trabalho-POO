@@ -108,6 +108,8 @@ public class IULivraria {
                 break;
             default:
         }
+        
+        return 0;
     }
     
     private static int gerenciarProdutos(Livraria l) {

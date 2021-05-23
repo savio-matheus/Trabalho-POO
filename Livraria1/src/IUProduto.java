@@ -36,30 +36,32 @@ public class IUProduto {
 
         switch (op) {
             case 1:
-                l.setCodigo(ES.entradaInt("Codigo"));
+                p.setCodigo(ES.entradaInt("Codigo"));
                 break;
             case 2:
-                l.setNome(ES.entradaString("Nome"));
+                p.setNome(ES.entradaString("Nome"));
                 break;
             case 3:
-                l.setPrecoDeCusto(ES.entradaDouble("Preço de Custo"));
+                p.setPrecoDeCusto(ES.entradaDouble("Preço de Custo"));
                 break;
             case 4:
-                l.setPrecoDeVenda(ES.entradaDouble("Preço de Venda"));
+                p.setPrecoDeVenda(ES.entradaDouble("Preço de Venda"));
                 break;
             case 5:
-                l.setQuantidade(ES.entradaInt("Quantidade"));
+                p.setQuantidade(ES.entradaInt("Quantidade"));
                 break;
             case 6:
-                l.setFornecedor(); // adicionar função para selecionar fornecedor
+                //p.setFornecedor(); adicionar função para selecionar fornecedor
                 break;
-            case 7:
-                l.setAutor(ES.entradaString("Autor"));
+            case 7: // A fazer: diferenciar "livro" de produto genérico
+                //livro.setAutor(ES.entradaString("Autor"));
                 break;
             case 8:
-                l.setEditora(ES.entradaString("Editora"));
+                //livro.setEditora(ES.entradaString("Editora"));
             default:
         }
+        
+        return 0;
     }
     
     static int excluir(Livraria l) {

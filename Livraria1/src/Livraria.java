@@ -86,8 +86,4 @@ public class Livraria extends Empresa {
     Funcionario buscarFuncionarios() {
         return null;
     }
-    
-    String getEndereco() {
-        return endereco.toString();
-    }
 }
