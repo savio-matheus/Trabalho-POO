@@ -11,6 +11,22 @@ public class Vendedor extends Funcionario{
         this.vendas = vendas;
         
     }
+
+    public double getPorcentagemComissao() {
+        return porcentagemComissao;
+    }
+
+    public void setPorcentagemComissao(double porcentagemComissao) {
+        this.porcentagemComissao = porcentagemComissao;
+    }
+
+    public double getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(double vendas) {
+        this.vendas = vendas;
+    }
     
     double ganhoTotal() {
         return 0;

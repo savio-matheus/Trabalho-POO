@@ -3,46 +3,58 @@ import java.util.ArrayList;
 
 public class IULivraria {
     
-    static int acessar(ArrayList<Livraria> lista) {
-        String cnpj = ES.entradaString("Informe o CNPJ da livraria a ser acessada");
-        int i = buscar(lista, cnpj);
-        Livraria livraria = null;
-        String cnpjFornecedor = "";
+    static void acessar(ArrayList<Livraria> lista) {
+        String cnpj;
+        int i;
+        Livraria livraria;
         
-        if (i == -1) {
-            ES.mostrarMensagem("Livraria não encontrada");
-            return 1;
+        while (true) {
+            cnpj = ES.entradaString("Informe o CNPJ da livraria a ser acessada [0 para cancelar]");
+            if (cnpj.equals("0")) {
+                return;
+            }
+            i = buscar(lista, cnpj);
+            if (i == -1) {
+                ES.mostrarMensagem("Livraria não encontrada");
+                continue;
+            }
+            break;
         }
         livraria = lista.get(i);
         
-        int op = ES.entradaInt(
-                "O que você deseja fazer?\n"
-                + "1. Gerenciar produtos\n"
-                + "2. Gerenciar funcionários\n"
-                + "3. Gerenciar fornecedores"
-        );
-        
-        switch(op) {
-            case 1:
-                gerenciarProdutos(livraria);
-            case 2:
-                
-            case 3:
-                gerenciarFornecedores(livraria);
-            default:
+        while (true) {
+            int op = ES.entradaInt(
+                    "O que você deseja fazer?\n"
+                    + "1. Gerenciar produtos\n"
+                    + "2. Gerenciar funcionários\n"
+                    + "3. Gerenciar fornecedores\n"
+                    + "4. Voltar"
+            );
+
+            switch(op) {
+                case 1:
+                    gerenciarProdutos(livraria);
+                case 2:
+                    gerenciarFuncionarios(livraria);
+                case 3:
+                    gerenciarFornecedores(livraria);
+                case 4:
+                    return;
+                default:
+                    ES.mostrarMensagem("Opção inválida");
+            }
         }
-        
-        return 0;
     }
     
-    static int listar(ArrayList<Livraria> lista) {
+    static void listar(ArrayList<Livraria> lista) {
+        // Seria interessante mostrar uma lista no lugar de um monte de janelas.
         for (Livraria liv : lista) {
             ES.mostrarMensagem(liv.toString());
         }
-        return 0;
+        return;
     }
     
-    static int adicionar(ArrayList<Livraria> lista) {
+    static void adicionar(ArrayList<Livraria> lista) {
         ES.mostrarMensagem("Informe a seguir o endereço da livraria");
         Endereco e = ES.escreverEndereco();
         ES.mostrarMensagem("Informe a seguir os dados da livraria");
@@ -54,17 +66,28 @@ public class IULivraria {
         );
         lista.add(l);
         
-        return 0;
+        return;
     }
     
-    static int remover(ArrayList<Livraria> lista) {
-        String cnpj = ES.entradaString("Informe o CNPJ da livraria a ser excluída");
-        int i = buscar(lista, cnpj);
-        if (i != -1)
-            lista.remove(i);
-        ES.mostrarMensagem("Livraria apagada com sucesso");
+    static void remover(ArrayList<Livraria> lista) {
+        String cnpj;
+        int i;
         
-        return 0;
+        while (true) {
+            cnpj = ES.entradaString("Informe o CNPJ da livraria a ser excluída [0 para cancelar]");
+            if (cnpj.equals("0")) {
+                return;
+            }
+            i = buscar(lista, cnpj);
+            if (i == -1) {
+                ES.mostrarMensagem("Livraria não encontrada");
+                continue;
+            }
+            break;
+        }
+        
+        lista.remove(i);
+        ES.mostrarMensagem("Livraria excluída com sucesso");
     }
     
     static int buscar(ArrayList<Livraria> lista, String cnpj) {
@@ -74,53 +97,70 @@ public class IULivraria {
             }
         }
         
-        ES.mostrarMensagem("CNPJ não encontrado");
         return -1;
     }
     
-    static int alterar(ArrayList<Livraria> lista) {
-        String cnpj = ES.entradaString("Informe o CNPJ da livraria a ser alterada");
-        int i = buscar(lista, cnpj);
-        String msg = "O que você deseja alterar\n"
+    static void alterar(ArrayList<Livraria> lista) {
+        String cnpj;
+        int i;
+        Livraria livraria = null;
+        int op;
+        
+        while (true) {
+            cnpj = ES.entradaString("Informe o CNPJ da livraria a ser alterada [0 para cancelar]");
+            if (cnpj.equals("0")) {
+                return;
+            }
+            i = buscar(lista, cnpj);
+            if (i == -1) {
+                ES.mostrarMensagem("Livraria não encontrada");
+                continue;
+            }
+            break;
+        }
+        livraria = lista.get(i);
+        
+        while (true) {
+            op = ES.entradaInt("O que você deseja alterar?\n"
                 + "1. CNPJ\n"
                 + "2. Nome\n"
                 + "3. Telefone\n"
-                + "4. Endereço";
-        
-        Livraria liv = null;
-        
-        if (i != -1)
-            liv = lista.get(i);
-        
-        switch(ES.entradaInt(msg)) {
-            case 1:
-                liv.setCnpj(ES.entradaString("Novo CNPJ"));
-                break;
-            case 2:
-                liv.setNome(ES.entradaString("Novo nome"));
-                break;
-            case 3:
-                liv.setTelefone(ES.entradaString("Novo telefone"));
-                break;
-            case 4:
-                ES.mostrarMensagem("Novo endereço");
-                liv.setEndereco(ES.escreverEndereco());
-                break;
-            default:
+                + "4. Endereço\n"
+                + "5. Voltar"
+            );
+            
+            switch(op) {
+                case 1:
+                    livraria.setCnpj(ES.entradaString("Novo CNPJ"));
+                    break;
+                case 2:
+                    livraria.setNome(ES.entradaString("Novo nome"));
+                    break;
+                case 3:
+                    livraria.setTelefone(ES.entradaString("Novo telefone"));
+                    break;
+                case 4:
+                    ES.mostrarMensagem("Novo endereço");
+                    livraria.setEndereco(ES.escreverEndereco());
+                    break;
+                case 5:
+                    // A fazer: salvar o objeto novamente na lista, por cima do antigo.
+                    return;
+                default:
+                    ES.mostrarMensagem("Opção inválida");
+            }
         }
-        
-        return 0;
     }
     
-    private static int gerenciarProdutos(Livraria l) {
-        IUProduto produto = new IUProduto();
+    private static void gerenciarProdutos(Livraria l) {
         int op = ES.entradaInt(
                 "O que você deseja fazer?\n"
                 + "1. Listar\n"
                 + "2. Adicionar\n"
                 + "3. Excluir\n"
                 + "4. Alterar\n"
-                + "5. Buscar"
+                + "5. Buscar\n"
+                + "6. Voltar"
         );
         
         switch(op) {
@@ -128,25 +168,30 @@ public class IULivraria {
                 ES.mostrarMensagem(l.listarProdutos());
                 break;
             case 2:
-                produto.adicionar(l);
+                IUProduto.adicionar(l);
                 break;
                 
             case 3:
-                produto.excluir(l);
+                IUProduto.excluir(l);
                 break;
             
             case 4:
-                produto.alterar(l);
+                IUProduto.alterar(l);
                 break;
             
             case 5:
-                ES.mostrarMensagem(produto.buscar(l).toString());
+                ES.mostrarMensagem(IUProduto.buscar(l).toString());
+                
+            case 6:
+                return;
+                
+            default:
+                ES.mostrarMensagem("Opção inválida");
         }
-        
-        return 0;
     }
     
-    private static int gerenciarFornecedores(Livraria l) {
+    // A fazer: adicionar while(true)
+    private static void gerenciarFornecedores(Livraria l) {
         IUFornecedor fornecedor = new IUFornecedor();
         int op = -1;
         
@@ -173,10 +218,11 @@ public class IULivraria {
             default:
         }
         
-        return 0;
+        return;
     }
     
-    private static int gerenciarFuncionarios(Livraria l) {
+    // Candidata a ser apagada
+    private static void gerenciarFuncionarios(Livraria l) {
         IUFuncionario funcionario = new IUFuncionario();
         int op = -1;
         
@@ -203,6 +249,6 @@ public class IULivraria {
             default:
         }
         
-        return 0;
+        return;
     }
 }

@@ -1,9 +1,8 @@
-import javax.swing.JOptionPane;
 
 public class IUFornecedor {
     
-    static Fornecedor buscar(Livraria l) {
-        return null;
+    static int buscar(Livraria l) {
+        return -1;
     }
     
     static int alterar(Livraria l) {

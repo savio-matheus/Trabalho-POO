@@ -11,16 +11,10 @@ public class Gerente extends Funcionario {
         return 0;
     }
 
-    /**
-     * @return the bonificacao
-     */
     public double getBonificacao() {
         return bonificacao;
     }
 
-    /**
-     * @param bonificacao the bonificacao to set
-     */
     public void setBonificacao(double bonificacao) {
         this.bonificacao = bonificacao;
     }

@@ -3,8 +3,8 @@ import javax.swing.JOptionPane;
 
 public class IUFuncionario {
     
-    static Funcionario buscar(Livraria l) {
-        return null;
+    static int buscar(Livraria l) {
+        return -1;
     }
     
     static int alterar(Livraria l) {
