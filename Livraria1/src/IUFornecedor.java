@@ -24,6 +24,7 @@ public class IUFornecedor {
             i = buscar(l);
             
             if (i == -1) {
+                ES.mostrarMensagem("Não há fornecedores cadastrados");
                 continue;
             }
             break;
@@ -32,7 +33,7 @@ public class IUFornecedor {
         Fornecedor f = l.getFornecedor(i);
         
         while (true) {
-            int op = ES.entradaInt("O que você deseja alterar?"
+            int op = ES.entradaInt("O que você deseja alterar?\n"
                     + "0. Voltar\n"
                     + "1. CNPJ\n"
                     + "2. Nome\n"
@@ -46,12 +47,16 @@ public class IUFornecedor {
                     return;
                 case 1:
                     f.setCnpj(ES.entradaString("Novo CNPJ"));
+                    break;
                 case 2:
                     f.setNome(ES.entradaString("Novo nome"));
+                    break;
                 case 3:
                     f.setTelefone(ES.entradaString("Novo telefone"));
+                    break;
                 case 4:
                     f.setEndereco(ES.escreverEndereco());
+                    break;
                 default:
                     ES.mostrarMensagem("Opção inválida");
             }
@@ -63,13 +68,12 @@ public class IUFornecedor {
             String cnpj = ES.entradaString("CNPJ do fornecedor a ser excluído [0 para sair]");
             if (cnpj.equals("0")) {
                 return;
-            }
-            if (l.excluirFornecedor(cnpj) == 0) {
+            }else if (l.excluirFornecedor(cnpj) == 0) {
                 ES.mostrarMensagem("Fornecedor não encontrado");
-                continue;
+            } else {
+                ES.mostrarMensagem("Fornecedor removido com sucesso");
+                return;
             }
-            ES.mostrarMensagem("Fornecedor removido com sucesso");
-            return;
         }
     }
     
@@ -82,9 +86,16 @@ public class IUFornecedor {
                 ES.entradaString("Telefone"),
                 e
         );
+        
+        l.adicionarFornecedor(f);
     }
     
     static void listar(Livraria l) {
+        if (false == l.temFornecedor()) {
+            ES.mostrarMensagem("Não há fornecedores cadastrados");
+            return;
+        }
+        
         for (int i = 0; i < l.getQuantidadeFornecedores(); i++) {
             ES.mostrarMensagem(l.getFornecedor(i).toString());
         }

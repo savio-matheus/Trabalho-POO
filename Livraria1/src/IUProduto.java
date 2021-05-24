@@ -2,18 +2,12 @@
 public class IUProduto {
     static int buscar(Livraria l) {
         int codigo = ES.entradaInt("Codigo do produto [0 para sair]");
-        int p = l.buscarProduto(codigo);
-        
-        if (codigo == 0) {
-            return -1;
-        }
-        
-        return p;
+        return l.buscarProduto(codigo);
     }
     
     static void alterar(Livraria l) {
-        int i = -1;
-        int op = -1;
+        int i;
+        int op;
         Produto p;
 
         i = buscar(l);
@@ -24,7 +18,7 @@ public class IUProduto {
         
         p = l.getProduto(i);
         
-        op = ES.entradaInt("O que você deseja alterar?"
+        op = ES.entradaInt("O que você deseja alterar?\n"
                 + "0. Voltar\n"
                 + "1. Código\n"
                 + "2. Nome\n"
@@ -53,18 +47,39 @@ public class IUProduto {
                 p.setQuantidade(ES.entradaInt("Quantidade"));
                 break;
             case 6:
-                //p.setFornecedor(); adicionar função para selecionar fornecedor
+                alterarFornecedor(p, l);
                 break;
             default:
         }
-        
-        return;
+    }
+    
+    static void alterarFornecedor(Produto p, Livraria l) {
+        while (true) {
+            IUFornecedor.listar(l);
+            String cnpj = ES.entradaString("Digite o CNPJ do novo fornecedor para o produto [0 para sair]");
+
+            if (cnpj.equals("0")) {
+                return;
+            }
+            
+            int indice = l.buscarFornecedor(cnpj);
+            
+            if (indice == -1) {
+                ES.mostrarMensagem("CNPJ não encontrado");
+                continue;
+            }
+            
+            p.setFornecedor(l.getFornecedor(indice));
+        }
     }
     
     static void excluir(Livraria l) {
         while (true) {
-            int codigo = ES.entradaInt("Codigo do produto a ser excluído");
-            if (l.excluirProduto(codigo) == 0) {
+            int codigo = ES.entradaInt("Codigo do produto a ser excluído [0 para sair]");
+            
+            if (codigo == 0) {
+                return;
+            } else if (l.excluirProduto(codigo) == 0) {
                 ES.mostrarMensagem("Produto não encontrado!");
             } else {
                 ES.mostrarMensagem("Produto removido com sucesso");
@@ -75,16 +90,16 @@ public class IUProduto {
     
     static void adicionar(Livraria l) {
         int i = -1;
-        String cnpjFornecedor = "";
+        String cnpjFornecedor;
 
-        if (l.temFornecedor()) {
+        if (l.temFornecedor() == false) {
             ES.mostrarMensagem("Não há fornecedores cadastrados");
             return;
         }
 
         while (true) {
             ES.mostrarMensagem("A seguir será mostrada uma lista de fornecedores");
-            listar(l);
+            IUFornecedor.listar(l);
             cnpjFornecedor = ES.entradaString("Digite o CNPJ de um fornecedor [0 para sair]");
 
             if (cnpjFornecedor.equals("0")) {
@@ -111,11 +126,16 @@ public class IUProduto {
                     l.getFornecedor(i),
                     ES.entradaString("Data da compra")
             );
-        
-        return;
+            
+            l.adicionarProduto(p);
     }
     
     static void listar(Livraria l) {
+        if (false == l.temProduto()) {
+            ES.mostrarMensagem("Não há produtos cadastrados");
+            return;
+        }
+        
         for (int i = 0; i < l.getQuantidadeProdutos(); i++) {
             ES.mostrarMensagem(l.getProduto(i).toString());
         }

@@ -25,20 +25,20 @@ public class IULivraria {
         while (true) {
             int op = ES.entradaInt(
                     "O que você deseja fazer?\n"
+                    + "0. Voltar\n"
                     + "1. Gerenciar produtos\n"
-                    + "2. Gerenciar fornecedores\n"
-                    + "3. Voltar"
+                    + "2. Gerenciar fornecedores"
             );
 
             switch(op) {
+                case 0:
+                    return;
                 case 1:
                     gerenciarProdutos(livraria);
                     break;
                 case 2:
                     gerenciarFornecedores(livraria);
                     break;
-                case 3:
-                    return;
                 default:
                     ES.mostrarMensagem("Opção inválida");
             }
@@ -46,10 +46,14 @@ public class IULivraria {
     }
     
     static void listar(ArrayList<Livraria> lista) {
+        if (lista.size() == 0) {
+            ES.mostrarMensagem("Não há livrarias cadastradas");
+            return;
+        }
+        
         for (int i = 0; i < lista.size(); i++) {
             ES.mostrarMensagem(lista.get(i).toString());
         }
-        return;
     }
     
     static void adicionar(ArrayList<Livraria> lista) {
@@ -63,8 +67,6 @@ public class IULivraria {
                 e
         );
         lista.add(l);
-        
-        return;
     }
     
     static void remover(ArrayList<Livraria> lista) {
@@ -101,7 +103,7 @@ public class IULivraria {
     static void alterar(ArrayList<Livraria> lista) {
         String cnpj;
         int i;
-        Livraria livraria = null;
+        Livraria livraria;
         int op;
         
         while (true) {
@@ -153,36 +155,37 @@ public class IULivraria {
     private static void gerenciarProdutos(Livraria l) {
         int op = ES.entradaInt(
                 "O que você deseja fazer?\n"
+                + "0. Voltar\n"
                 + "1. Listar\n"
                 + "2. Adicionar\n"
                 + "3. Excluir\n"
                 + "4. Alterar\n"
-                + "5. Buscar\n"
-                + "6. Voltar"
+                + "5. Buscar"
         );
         
         switch(op) {
+            case 0:
+                return;
             case 1:
                 IUProduto.listar(l);
                 break;
             case 2:
                 IUProduto.adicionar(l);
                 break;
-                
             case 3:
                 IUProduto.excluir(l);
                 break;
-            
             case 4:
                 IUProduto.alterar(l);
                 break;
-            
             case 5:
-                ES.mostrarMensagem(l.getProduto(IUProduto.buscar(l)).toString());
-                
-            case 6:
-                return;
-                
+                int i = IUProduto.buscar(l);
+                if (i == -1) {
+                    ES.mostrarMensagem("Produto não encontrado");
+                    break;
+                }
+                ES.mostrarMensagem(l.getProduto(i).toString());
+                break;
             default:
                 ES.mostrarMensagem("Opção inválida");
         }
@@ -190,12 +193,11 @@ public class IULivraria {
     
     private static void gerenciarFornecedores(Livraria l) {
         while (true) {
-            IUFornecedor fornecedor = new IUFornecedor();
-            int op = -1;
+            int op;
 
             op = ES.entradaInt(
                     "O que você quer fazer?\n"
-                    + "0. Voltar"
+                    + "0. Voltar\n"
                     + "1. Listar\n"
                     + "2. Adicionar\n"
                     + "3. Excluir\n"
@@ -207,25 +209,23 @@ public class IULivraria {
                 case 0:
                     return;
                 case 1:
-                    fornecedor.listar(l);
+                    IUFornecedor.listar(l);
                     break;
                 case 2:
-                    fornecedor.adicionar(l);
+                    IUFornecedor.adicionar(l);
                     break;
                 case 3:
-                    fornecedor.excluir(l);
+                    IUFornecedor.excluir(l);
                     break;
                 case 4:
-                    fornecedor.alterar(l);
+                    IUFornecedor.alterar(l);
                     break;
                 case 5:
-                    fornecedor.buscar(l);
+                    IUFornecedor.buscar(l);
                     break;
                 default:
                     ES.mostrarMensagem("Opção inválida");
             }
-
-            return;
         }
     }
 }
