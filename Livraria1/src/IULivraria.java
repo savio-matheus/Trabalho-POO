@@ -26,19 +26,16 @@ public class IULivraria {
             int op = ES.entradaInt(
                     "O que você deseja fazer?\n"
                     + "1. Gerenciar produtos\n"
-                    + "2. Gerenciar funcionários\n"
-                    + "3. Gerenciar fornecedores\n"
-                    + "4. Voltar"
+                    + "2. Gerenciar fornecedores\n"
+                    + "3. Voltar"
             );
 
             switch(op) {
                 case 1:
                     gerenciarProdutos(livraria);
                 case 2:
-                    gerenciarFuncionarios(livraria);
-                case 3:
                     gerenciarFornecedores(livraria);
-                case 4:
+                case 3:
                     return;
                 default:
                     ES.mostrarMensagem("Opção inválida");
@@ -215,37 +212,6 @@ public class IULivraria {
                 fornecedor.alterar(l);
             case 5:
                 fornecedor.buscar(l);
-            default:
-        }
-        
-        return;
-    }
-    
-    // Candidata a ser apagada
-    private static void gerenciarFuncionarios(Livraria l) {
-        IUFuncionario funcionario = new IUFuncionario();
-        int op = -1;
-        
-        op = ES.entradaInt(
-                "O que você quer fazer?\n"
-                + "1. Listar\n"
-                + "2. Adicionar\n"
-                + "3. Excluir\n"
-                + "4. Alterar\n"
-                + "5. Buscar"
-        );
-        
-        switch (op) {
-            case 1:
-                funcionario.listar(l);
-            case 2:
-                funcionario.adicionar(l);
-            case 3:
-                funcionario.excluir(l);
-            case 4:
-                funcionario.alterar(l);
-            case 5:
-                funcionario.buscar(l);
             default:
         }
         

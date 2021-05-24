@@ -34,6 +34,8 @@ public class Livro extends Produto{
     }
     
     public String toString() {
-        return "";
+        return super.toString() 
+               +"\nAutor: " + this.autor
+               + "\nEditora: " + this.editora;
     }
 }

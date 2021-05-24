@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Livraria extends Empresa {
     
     protected ArrayList <Produto> produtos = new ArrayList();
-    protected ArrayList <Funcionario> funcionarios = new ArrayList();
     protected ArrayList <Fornecedor> fornecedores = new ArrayList();
     
     Livraria(String cnpj, String nome, String telefone, Endereco endereco){
@@ -29,26 +28,6 @@ public class Livraria extends Empresa {
     
     int alterarProduto() {
         return 0;
-    }
-    
-    void adicionarFuncionario() {
-        return;
-    }
-    
-    void excluirFuncionario() {
-        return;
-    }
-    
-    void listarFuncionarios() {
-        return;
-    }
-    
-    void alterarFuncionario() {
-        return;
-    }
-    
-    Funcionario buscarFuncionario(String cpf) {
-        return null;
     }
     
     void adicionarFornecedor() {
@@ -81,9 +60,5 @@ public class Livraria extends Empresa {
     
     boolean temFornecedor() {
         return false;
-    }
-    
-    Funcionario buscarFuncionarios() {
-        return null;
     }
 }

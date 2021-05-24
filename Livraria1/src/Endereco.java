@@ -44,6 +44,9 @@ public class Endereco {
     }
     
     public String toString() {
-        return "";
+        return "Logradouro: " + this.endereco
+                + "\nBairro: " + this.bairro
+                + "\nCidade: " + this.cidade
+                + "\nEstado: " + this.estado;
     }
 }
