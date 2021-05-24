@@ -33,8 +33,10 @@ public class IULivraria {
             switch(op) {
                 case 1:
                     gerenciarProdutos(livraria);
+                    break;
                 case 2:
                     gerenciarFornecedores(livraria);
+                    break;
                 case 3:
                     return;
                 default:
@@ -44,9 +46,8 @@ public class IULivraria {
     }
     
     static void listar(ArrayList<Livraria> lista) {
-        // Seria interessante mostrar uma lista no lugar de um monte de janelas.
-        for (Livraria liv : lista) {
-            ES.mostrarMensagem(liv.toString());
+        for (int i = 0; i < lista.size(); i++) {
+            ES.mostrarMensagem(lista.get(i).toString());
         }
         return;
     }
@@ -141,7 +142,7 @@ public class IULivraria {
                     livraria.setEndereco(ES.escreverEndereco());
                     break;
                 case 5:
-                    // A fazer: salvar o objeto novamente na lista, por cima do antigo.
+                    lista.set(i, livraria);
                     return;
                 default:
                     ES.mostrarMensagem("Opção inválida");
@@ -162,7 +163,7 @@ public class IULivraria {
         
         switch(op) {
             case 1:
-                ES.mostrarMensagem(l.listarProdutos());
+                IUProduto.listar(l);
                 break;
             case 2:
                 IUProduto.adicionar(l);
@@ -177,7 +178,7 @@ public class IULivraria {
                 break;
             
             case 5:
-                ES.mostrarMensagem(IUProduto.buscar(l).toString());
+                ES.mostrarMensagem(l.getProduto(IUProduto.buscar(l)).toString());
                 
             case 6:
                 return;
@@ -187,34 +188,44 @@ public class IULivraria {
         }
     }
     
-    // A fazer: adicionar while(true)
     private static void gerenciarFornecedores(Livraria l) {
-        IUFornecedor fornecedor = new IUFornecedor();
-        int op = -1;
-        
-        op = ES.entradaInt(
-                "O que você quer fazer?\n"
-                + "1. Listar\n"
-                + "2. Adicionar\n"
-                + "3. Excluir\n"
-                + "4. Alterar\n"
-                + "5. Buscar"
-        );
-        
-        switch (op) {
-            case 1:
-                fornecedor.listar(l);
-            case 2:
-                fornecedor.adicionar(l);
-            case 3:
-                fornecedor.excluir(l);
-            case 4:
-                fornecedor.alterar(l);
-            case 5:
-                fornecedor.buscar(l);
-            default:
+        while (true) {
+            IUFornecedor fornecedor = new IUFornecedor();
+            int op = -1;
+
+            op = ES.entradaInt(
+                    "O que você quer fazer?\n"
+                    + "0. Voltar"
+                    + "1. Listar\n"
+                    + "2. Adicionar\n"
+                    + "3. Excluir\n"
+                    + "4. Alterar\n"
+                    + "5. Buscar"
+            );
+
+            switch (op) {
+                case 0:
+                    return;
+                case 1:
+                    fornecedor.listar(l);
+                    break;
+                case 2:
+                    fornecedor.adicionar(l);
+                    break;
+                case 3:
+                    fornecedor.excluir(l);
+                    break;
+                case 4:
+                    fornecedor.alterar(l);
+                    break;
+                case 5:
+                    fornecedor.buscar(l);
+                    break;
+                default:
+                    ES.mostrarMensagem("Opção inválida");
+            }
+
+            return;
         }
-        
-        return;
     }
 }

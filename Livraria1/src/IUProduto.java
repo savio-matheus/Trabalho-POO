@@ -1,40 +1,42 @@
 
-import javax.swing.JOptionPane;
-
 public class IUProduto {
-    static Produto buscar(Livraria l) {
-        int codigo = ES.entradaInt("Codigo do produto");
-        Produto p = l.buscarProduto(codigo);
+    static int buscar(Livraria l) {
+        int codigo = ES.entradaInt("Codigo do produto [0 para sair]");
+        int p = l.buscarProduto(codigo);
         
-        if (p == null) {
-            return null;
+        if (codigo == 0) {
+            return -1;
         }
         
         return p;
     }
     
-    static int alterar(Livraria l) {
-        int codigo = ES.entradaInt("Codigo do produto a ser alterado");
-        Produto p = null;
+    static void alterar(Livraria l) {
+        int i = -1;
         int op = -1;
+        Produto p;
 
-        if (p == null) {
+        i = buscar(l);
+        if (i == -1) {
             ES.mostrarMensagem("Produto não encontrado");
-            return 0;
+            return;
         }
-        p = buscar(l);
+        
+        p = l.getProduto(i);
+        
         op = ES.entradaInt("O que você deseja alterar?"
+                + "0. Voltar\n"
                 + "1. Código\n"
                 + "2. Nome\n"
                 + "3. Preço de Custo\n"
                 + "4. Preço de Venda\n"
                 + "5. Quantidade\n"
-                + "6. Fornecedor\n"
-                + "7. Autor\n"
-                + "8. Editora"
+                + "6. Fornecedor"
         );
 
         switch (op) {
+            case 0:
+                return;
             case 1:
                 p.setCodigo(ES.entradaInt("Codigo"));
                 break;
@@ -53,65 +55,69 @@ public class IUProduto {
             case 6:
                 //p.setFornecedor(); adicionar função para selecionar fornecedor
                 break;
-            case 7: // A fazer: diferenciar "livro" de produto genérico
-                //livro.setAutor(ES.entradaString("Autor"));
-                break;
-            case 8:
-                //livro.setEditora(ES.entradaString("Editora"));
             default:
         }
         
-        return 0;
+        return;
     }
     
-    static int excluir(Livraria l) {
-        int codigo = ES.entradaInt("Codigo do produto a ser excluído");
-        int quantidade = ES.entradaInt("Quantidade a ser excluída");
-        if (l.removerProduto(codigo) == 1) {
-            ES.mostrarMensagem("Produto não encontrado!");
-        } else {
-            ES.mostrarMensagem("Produto removido com sucesso");
+    static void excluir(Livraria l) {
+        while (true) {
+            int codigo = ES.entradaInt("Codigo do produto a ser excluído");
+            if (l.excluirProduto(codigo) == 0) {
+                ES.mostrarMensagem("Produto não encontrado!");
+            } else {
+                ES.mostrarMensagem("Produto removido com sucesso");
+                break;
+            }
         }
-        
-        return 0;
     }
     
-    static int adicionar(Livraria l) {
-    Fornecedor f;
-    String cnpjFornecedor = "";
+    static void adicionar(Livraria l) {
+        int i = -1;
+        String cnpjFornecedor = "";
+
+        if (l.temFornecedor()) {
+            ES.mostrarMensagem("Não há fornecedores cadastrados");
+            return;
+        }
+
+        while (true) {
+            ES.mostrarMensagem("A seguir será mostrada uma lista de fornecedores");
+            listar(l);
+            cnpjFornecedor = ES.entradaString("Digite o CNPJ de um fornecedor [0 para sair]");
+
+            if (cnpjFornecedor.equals("0")) {
+                return;
+            }
+
+            i = l.buscarFornecedor(cnpjFornecedor);
+
+            if (i == -1) {
+                ES.mostrarMensagem("CNPJ não encontrado");
+                continue;
+            }
+            
+            break;
+        }
+
+        ES.mostrarMensagem("Cadastre a seguir os dados do produto");
+            Produto p = new Produto(
+                    ES.entradaInt("Código"),
+                    ES.entradaString("Nome"),
+                    ES.entradaDouble("Preço de Custo"),
+                    ES.entradaDouble("Preço de Venda"),
+                    ES.entradaInt("Quantidade"),
+                    l.getFornecedor(i),
+                    ES.entradaString("Data da compra")
+            );
         
-    if (l.temFornecedor()) {
-        ES.mostrarMensagem("Não há fornecedores cadastrados");
-        return 0;
-    }
-
-    ES.mostrarMensagem("A seguir será mostrada uma lista de fornecedores");
-    ES.mostrarMensagem(l.listarFornecedores());
-    cnpjFornecedor = ES.entradaString("Digite o CNPJ de um fornecedor");
-    f = l.buscarFornecedor(cnpjFornecedor);
-
-    if (f == null) {
-        ES.mostrarMensagem("CNPJ não encontrado");
-        return 0;
-    }
-
-    ES.mostrarMensagem("Cadastre a seguir os dados do produto");
-        Produto p = new Livro(
-                ES.entradaInt("Código"),
-                ES.entradaString("Nome"),
-                ES.entradaDouble("Preço de Custo"),
-                ES.entradaDouble("Preço de Venda"),
-                ES.entradaInt("Quantidade"),
-                f,
-                ES.entradaString("Autor"),
-                ES.entradaString("Editora"),
-                ES.entradaString("Data da compra")
-        );
-        
-        return 0;
+        return;
     }
     
-    static int listar(Livraria l) {
-        return 0;
+    static void listar(Livraria l) {
+        for (int i = 0; i < l.getQuantidadeProdutos(); i++) {
+            ES.mostrarMensagem(l.getProduto(i).toString());
+        }
     }
 }

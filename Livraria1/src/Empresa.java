@@ -49,7 +49,7 @@ public abstract class Empresa {
     	
         return "CNPJ: " + this.cnpj 
                 + "\nNome: " + this.nome
-                + "\n Telefone: " + this.telefone
-                + "\n Endereço: " + this.endereco.toString();
+                + "\nTelefone: " + this.telefone
+                + "\nEndereço: " + this.endereco.toString();
     }
 }

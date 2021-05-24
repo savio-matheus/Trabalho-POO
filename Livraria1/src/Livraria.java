@@ -10,55 +10,105 @@ public class Livraria extends Empresa {
         super(cnpj, nome, telefone, endereco);
     }
     
-    int removerProduto(int codigo) {
-        return 0;
+    public int excluirProduto(int codigo) {
+        int indice = buscarProduto(codigo);
+        
+        if (indice == -1) {
+            return 0;
+        }
+        
+        this.produtos.remove(indice);
+        return 1;
     }
     
-    Produto buscarProduto(int codigo) {
-        return null;
+    public int buscarProduto(int codigo) {
+        for (int i = 0; i < this.produtos.size(); i++) {
+            if (this.produtos.get(i).getCodigo() == codigo) {
+                return i;
+            }
+        }
+        
+        return -1;
     }
     
-    void adicionarProduto() {
+    public void adicionarProduto(Produto p) {
+        this.produtos.add(p);
+    }
+    
+    public int alterarProduto(int codigo, Produto novo) {
+        int indice = this.buscarProduto(codigo);
+        
+        if (indice == -1)
+            return 0;
+        
+        this.produtos.set(indice, novo);
+        return 1;
+    }
+    
+    Produto getProduto(int indice) {
+        return this.produtos.get(indice);
+    }
+    
+    void adicionarFornecedor(Fornecedor f) {
+        this.fornecedores.add(f);
+    }
+    
+    int excluirFornecedor(String cnpj) {
+        int indice = this.buscarFornecedor(cnpj);
+        
+        if (indice == -1) {
+            return 0;
+        }
+        
+        this.fornecedores.remove(indice);
+        return 1;
+    }
+    
+    void alterarFornecedor(String cnpj, Fornecedor novo) {
+        int indice = this.buscarFornecedor(cnpj);
+        
+        if (indice == -1)
+            return;
+        
+        this.fornecedores.set(indice, novo);
         return;
     }
     
-    String listarProdutos() {
-        return "";
+    int buscarFornecedor(String cnpj) {
+        for (int i = 0; i < this.fornecedores.size(); i++) {
+            if (this.fornecedores.get(i).getCnpj().equals(cnpj)) {
+                return i;
+            }
+        }
+        
+        return -1;
     }
     
-    int alterarProduto() {
-        return 0;
+    Fornecedor getFornecedor(int indice) {
+        return this.fornecedores.get(indice);
     }
     
-    void adicionarFornecedor() {
-        return;
+    public int getQuantidadeFornecedores() {
+        return this.fornecedores.size();
     }
     
-    void excluirFornecedor() {
-        return;
-    }
-    
-    void alterarFornecedor() {
-        return;
-    }
-    
-    String listarFornecedores() {
-        return "";
-    }
-    
-    Fornecedor buscarFornecedor(String cnpj) {
-        return null;
+    public int getQuantidadeProdutos() {
+        return this.produtos.size();
     }
     
     boolean temProduto() {
-        return false;
-    }
-    
-    boolean temFuncionario() {
-        return false;
+        if (this.getQuantidadeProdutos() == 0) {
+            return false;
+        }
+        
+        return true;
     }
     
     boolean temFornecedor() {
-        return false;
+        if (this.getQuantidadeFornecedores() == 0) {
+            return false;
+        }
+        
+        return true;
     }
 }

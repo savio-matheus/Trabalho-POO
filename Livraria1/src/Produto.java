@@ -1,5 +1,5 @@
 
-public abstract class Produto {
+public class Produto {
     protected String nome;
     protected int quantidade;
     protected double precoDeVenda;
@@ -18,7 +18,7 @@ public abstract class Produto {
         this.fornecedor = fornecedor;
         this.dataUltimaCompra = dataUltimaCompra;
     }
-
+    
     public String getNome() {
         return nome;
     }
@@ -32,6 +32,10 @@ public abstract class Produto {
     }
 
     public void setQuantidade(int quantidade) {
+        if (quantidade < 0) {
+            return;
+        }
+        
         this.quantidade = quantidade;
     }
 
@@ -75,7 +79,6 @@ public abstract class Produto {
         this.dataUltimaCompra = dataUltimaCompra;
     }
     
-
     boolean temEstoque() {
     	int disponivel = this.getQuantidade();
     	
