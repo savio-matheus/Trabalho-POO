@@ -100,6 +100,31 @@ public class IULivraria {
         return -1;
     }
     
+    static void buscarPorEndereco(ArrayList<Livraria> lista) {
+        if (lista.isEmpty()) {
+            ES.mostrarMensagem("Não há livrarias cadastradas");
+            return;
+        }
+        
+        String cidade = ES.entradaString("Digite uma cidade");
+        String bairro = ES.entradaString("Digite um bairro");
+        boolean naoAchou = true;
+        
+        for (int i = 0; i < lista.size(); i++) {
+            Livraria l = lista.get(i);
+            Endereco e = l.getEndereco();
+            
+            if (e.getBairro().equals(bairro) && e.getCidade().equals(cidade)) {
+                ES.mostrarMensagem(l.toString());
+                IUProduto.listar(l);
+                naoAchou = false;
+            }
+        }
+        if (naoAchou) {
+            ES.mostrarMensagem("Livraria não encontrada");
+        }
+    }
+    
     static void alterar(ArrayList<Livraria> lista) {
         String cnpj;
         int i;
@@ -180,9 +205,8 @@ public class IULivraria {
                 break;
             case 5:
                 int i = IUProduto.buscar(l);
-                if (i == -1) {
-                    ES.mostrarMensagem("Produto não encontrado");
-                    break;
+                if (i <= -1) {
+                    return;
                 }
                 ES.mostrarMensagem(l.getProduto(i).toString());
                 break;
@@ -221,7 +245,12 @@ public class IULivraria {
                     IUFornecedor.alterar(l);
                     break;
                 case 5:
-                    IUFornecedor.buscar(l);
+                    int i = IUFornecedor.buscar(l);
+                    if (i <= -1) {
+                        return;
+                    }
+                    
+                    ES.mostrarMensagem(l.getFornecedor(i).toString());
                     break;
                 default:
                     ES.mostrarMensagem("Opção inválida");

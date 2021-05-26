@@ -1,9 +1,11 @@
 
 public class Produto {
+    protected static int codigoGerado = 1;
+    
     protected String nome;
     protected int quantidade;
     protected double precoDeVenda;
-    protected int codigo;
+    protected int codigo = 0;
     protected double precoDeCusto;
     protected Fornecedor fornecedor;
     protected String dataUltimaCompra;
@@ -84,6 +86,10 @@ public class Produto {
     	
         return (disponivel >= this.quantidade);
     }
+    
+    public static void incrementaCodigo() {
+        Produto.codigoGerado++;
+    }
 
     public String toString() {
         return "Código: " + this.codigo
@@ -91,7 +97,8 @@ public class Produto {
             + "\nPreço de custo: " + this.precoDeCusto
             + "\nPreço de venda: " + this.precoDeVenda
             + "\nQuantidade: " + this.quantidade
-            + "\nFornecedor: " + this.fornecedor.toString()
+            + "\nFornecedor: " + this.fornecedor.getNome()
+                + ", CNPJ: " + this.fornecedor.getCnpj()
             + "\nÚltima compra: " +  this.dataUltimaCompra;
     }
 }

@@ -2,32 +2,32 @@
 public class IUFornecedor {
     
     static int buscar(Livraria l) {
-        String cnpj = ES.entradaString("CNPJ do fornecedor a ser buscado [0 para sair]");
-        
-        if (cnpj.equals("0")) {
-            return -1;
+        while (true) {
+            if (l.temFornecedor() == false) {
+                ES.mostrarMensagem("Não há fornecedores cadastrados");
+                return -2;
+            }
+            
+            String cnpj = ES.entradaString("CNPJ do fornecedor [0 para sair]");
+            
+            if (cnpj.equals("0")) {
+                return -2;
+            }
+            
+            int indice = l.buscarFornecedor(cnpj);
+            if (indice <= -1) {
+                ES.mostrarMensagem("Fornecedor não encontrado");
+                continue;
+            }
+            return indice;
         }
-        
-        return l.buscarFornecedor(cnpj);
     }
     
     static void alterar(Livraria l) {
-        int i;
+        int i = buscar(l);
         
-        while (true) {
-            String cnpj = ES.entradaString("CNPJ do fornecedor a ser alterado [0 para voltar]");
-            
-            if (cnpj.equals("0")) {
-                return;
-            }
-            
-            i = buscar(l);
-            
-            if (i == -1) {
-                ES.mostrarMensagem("Não há fornecedores cadastrados");
-                continue;
-            }
-            break;
+        if (i <= -1) {
+            return;
         }
         
         Fornecedor f = l.getFornecedor(i);

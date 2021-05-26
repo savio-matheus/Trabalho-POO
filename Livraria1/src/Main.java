@@ -7,7 +7,17 @@ public class Main {
         
         ES.mostrarMensagem("Seja bem-vindo(a) ao gerenciador de livrarias");
         while (true) {
-            switch(telaInicial()) {
+            int op = ES.entradaInt(
+                "1. Listar livrarias\n" +
+                "2. Adicionar livraria\n" +
+                "3. Excluir livraria\n" +
+                "4. Alterar livraria\n" +
+                "5. Acessar livraria\n" +
+                "6. Buscar livraria\n" +
+                "7. Salvar e sair"
+            );
+
+            switch(op) {
                 case 1:
                     IULivraria.listar(livrarias);
                     break;
@@ -24,24 +34,14 @@ public class Main {
                     IULivraria.acessar(livrarias);
                     break;
                 case 6:
+                    IULivraria.buscarPorEndereco(livrarias);
+                    break;
+                case 7:
                     // acionar função de salvamento antes de sair.
                     return;
                 default:
                     ES.mostrarMensagem("Opção inválida");
             }
         }
-    }
-    
-    static int telaInicial() {
-        int op = ES.entradaInt(
-                "1. Listar livrarias\n" +
-                "2. Adicionar livraria\n" +
-                "3. Excluir livraria\n" +
-                "4. Alterar livraria\n" +
-                "5. Acessar livraria\n" +
-                "6. Salvar e sair"
-        );
-        
-        return op;
     }
 }

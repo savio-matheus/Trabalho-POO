@@ -1,20 +1,36 @@
 
 public class IUProduto {
     static int buscar(Livraria l) {
-        int codigo = ES.entradaInt("Codigo do produto [0 para sair]");
-        return l.buscarProduto(codigo);
+        while (true) {
+            if (l.temProduto() == false) {
+                ES.mostrarMensagem("Não há produtos cadastrados");
+                return -2;
+            }
+            
+            int codigo = ES.entradaInt("Codigo do produto [0 para sair]");
+            
+            if (codigo == 0) {
+                return -2;
+            }
+            
+            int indice = l.buscarProduto(codigo);
+            if (indice == -1) {
+                ES.mostrarMensagem("Produto não encontrado");
+                continue;
+            }
+            return indice;
+        }
     }
     
     static void alterar(Livraria l) {
         int i;
         int op;
         Produto p;
-
+        
         i = buscar(l);
-        if (i == -1) {
-            ES.mostrarMensagem("Produto não encontrado");
+        
+        if (i <= -1)
             return;
-        }
         
         p = l.getProduto(i);
         
@@ -100,25 +116,19 @@ public class IUProduto {
         while (true) {
             ES.mostrarMensagem("A seguir será mostrada uma lista de fornecedores");
             IUFornecedor.listar(l);
-            cnpjFornecedor = ES.entradaString("Digite o CNPJ de um fornecedor [0 para sair]");
-
-            if (cnpjFornecedor.equals("0")) {
+            i = IUFornecedor.buscar(l);
+            
+            if (i == -2) {
                 return;
-            }
-
-            i = l.buscarFornecedor(cnpjFornecedor);
-
-            if (i == -1) {
-                ES.mostrarMensagem("CNPJ não encontrado");
+            } else if (i == -1) {
                 continue;
             }
-            
             break;
         }
 
         ES.mostrarMensagem("Cadastre a seguir os dados do produto");
             Produto p = new Produto(
-                    ES.entradaInt("Código"),
+                    Produto.codigoGerado,
                     ES.entradaString("Nome"),
                     ES.entradaDouble("Preço de Custo"),
                     ES.entradaDouble("Preço de Venda"),
@@ -126,6 +136,7 @@ public class IUProduto {
                     l.getFornecedor(i),
                     ES.entradaString("Data da compra")
             );
+            Produto.incrementaCodigo();
             
             l.adicionarProduto(p);
     }
