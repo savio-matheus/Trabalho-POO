@@ -8,13 +8,7 @@ public class Endereco implements Serializable {
     private String bairro;
     private String cidade;
     private String estado;
-    
-    /** Construtor de Endereco
-    * @param endereco
-    * @param bairro
-    * @param cidade
-    * @param estado
-    */
+
     public Endereco(String endereco, String bairro, String cidade, String estado) {
         this.endereco = endereco;
         this.bairro = bairro;

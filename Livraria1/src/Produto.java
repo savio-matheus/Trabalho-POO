@@ -13,17 +13,7 @@ public class Produto implements Serializable {
     protected double precoDeCusto;
     protected Fornecedor fornecedor;
     protected String dataUltimaCompra;
-    
-    /**
-    * @param nome String - Nome do produto.
-    * @param quantidade int - Quantidade do produto em estoque.
-    * @param precoDeVenda Double - Preço pelo qual o produto será vendido.
-    * @param codigo int - Código de identificação do produto.
-    * @param precoDeCusto Dobule - Preço pago ao fornecedor pelo produto.
-    * @param fornecedor Fornecedor - Fornecedor do produto.
-    * @param dataUltimaCompra String - Data em que o produto foi comprado pela última vez.
-    * @return
-    */
+
     Produto(int codigo, String nome, double precoDeCusto, double precoDeVenda,
             int quantidade, Fornecedor fornecedor, String dataUltimaCompra) {
     	this.nome = nome;
@@ -162,8 +152,6 @@ public class Produto implements Serializable {
     }
  
 /** Método que incrementa o código do produto automaticamente.
- * 
- * @return void.
  */
     public static void incrementaCodigo() {
         Produto.codigoGerado++;

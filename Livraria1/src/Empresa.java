@@ -10,12 +10,6 @@ public abstract class Empresa implements Serializable {
     private String telefone;
     private Endereco endereco;
     
-    /** Construtor de Empresa
-    * @param cnpj
-    * @param nome
-    * @param telefone
-    * @param endereco
-    */
     Empresa(String cnpj, String nome, String telefone, Endereco endereco){
     
         this.cnpj = cnpj;
