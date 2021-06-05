@@ -3,17 +3,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**Classe que possui as listas de produtos e fornecedores e métodos relacionados a Livraria.
- * 
- * @param cnpj String - CNPJ da Livraria.
- * @param nome String - Nome da Livraria.
- * @param telefone String - Telefone da Livraria.
- * @param endereco Endereco - Endereço da Livraria.
  */
 public class Livraria extends Empresa implements Serializable {
     
     protected ArrayList <Produto> produtos = new ArrayList();
     protected ArrayList <Fornecedor> fornecedores = new ArrayList();
     
+    /** 
+    * @param cnpj String - CNPJ da Livraria.
+    * @param nome String - Nome da Livraria.
+    * @param telefone String - Telefone da Livraria.
+    * @param endereco Endereco - Endereço da Livraria.
+    */
     Livraria(String cnpj, String nome, String telefone, Endereco endereco){
     
         super(cnpj, nome, telefone, endereco);

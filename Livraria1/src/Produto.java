@@ -1,15 +1,6 @@
 import java.io.Serializable;
 
 /** Classe que contém atributos e métodos relacionados a um produto de determinada livraria.
-*
-* @param nome String - Nome do produto.
-* @param quantidade int - Quantidade do produto em estoque.
-* @param precoDeVenda Double - Preço pelo qual o produto será vendido.
-* @param codigo int - Código de identificação do produto.
-* @param precoDeCusto Dobule - Preço pago ao fornecedor pelo produto.
-* @param fornecedor Fornecedor - Fornecedor do produto.
-* @param dataUltimaCompra String - Data em que o produto foi comprado pela última vez.
-* @return
 */
 
 public class Produto implements Serializable {
@@ -22,7 +13,17 @@ public class Produto implements Serializable {
     protected double precoDeCusto;
     protected Fornecedor fornecedor;
     protected String dataUltimaCompra;
-
+    
+    /**
+    * @param nome String - Nome do produto.
+    * @param quantidade int - Quantidade do produto em estoque.
+    * @param precoDeVenda Double - Preço pelo qual o produto será vendido.
+    * @param codigo int - Código de identificação do produto.
+    * @param precoDeCusto Dobule - Preço pago ao fornecedor pelo produto.
+    * @param fornecedor Fornecedor - Fornecedor do produto.
+    * @param dataUltimaCompra String - Data em que o produto foi comprado pela última vez.
+    * @return
+    */
     Produto(int codigo, String nome, double precoDeCusto, double precoDeVenda,
             int quantidade, Fornecedor fornecedor, String dataUltimaCompra) {
     	this.nome = nome;
