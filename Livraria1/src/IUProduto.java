@@ -1,6 +1,16 @@
 import java.io.Serializable;
 
+/** Classe que acessa funções para gerenciamento de produtos.
+ * 
+ */
 public class IUProduto implements Serializable {
+    
+/** Método que busca um determinado produto em uma lista dentro de Livraria.
+* Interface de usuário para buscar produtos.
+* 
+* @param l Livraria.
+* @return indice int - indice do produto na lista de produtos.
+ */
     static int buscar(Livraria l) {
         while (true) {
             if (l.temProduto() == false) {
@@ -22,7 +32,12 @@ public class IUProduto implements Serializable {
             return indice;
         }
     }
-    
+ 
+/** Método que altera um determinado produto em uma lista dentro de Livraria.
+* Interface de usuário para alterar produtos.
+* 
+* @param l Livraria.
+ */
     static void alterar(Livraria l) {
         int i;
         int op;
@@ -70,6 +85,12 @@ public class IUProduto implements Serializable {
         }
     }
     
+/** Método que altera um determinado fornecedor em uma lista dentro de Livraria.
+* Interface de usuário para alterar fornecedores.
+* 
+* @param p Produto.
+* @param l Livraria.
+ */
     static void alterarFornecedor(Produto p, Livraria l) {
         while (true) {
             IUFornecedor.listar(l);
@@ -89,7 +110,11 @@ public class IUProduto implements Serializable {
             p.setFornecedor(l.getFornecedor(indice));
         }
     }
-    
+
+/** Método que exclui um determinado produto da lista de produtos de uma livraria.
+ * 
+ * @param l Livraria.
+ */    
     static void excluir(Livraria l) {
         while (true) {
             int codigo = ES.entradaInt("Codigo do produto a ser excluído [0 para sair]");
@@ -104,7 +129,11 @@ public class IUProduto implements Serializable {
             }
         }
     }
-    
+ 
+/** Método que cadastra um produto na lista de produtos de uma determinada livraria.
+ * 
+ * @param l Livraria.
+ */
     static void adicionar(Livraria l) {
         int i = -1;
         String cnpjFornecedor;
@@ -141,7 +170,11 @@ public class IUProduto implements Serializable {
             
             l.adicionarProduto(p);
     }
-    
+ 
+/** Método que lista todos os produtos existentes em uma determinada Livraria.
+ * 
+ * @param l Livraria.
+ */
     static void listar(Livraria l) {
         if (false == l.temProduto()) {
             ES.mostrarMensagem("Não há produtos cadastrados");
