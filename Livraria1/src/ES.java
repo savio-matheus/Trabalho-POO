@@ -10,6 +10,12 @@ import java.io.IOException;
 
 public class ES {
     
+    private static class CampoVazioException extends Exception {
+
+        public CampoVazioException() {
+        }
+    }
+    
     static void salvarEstado(ArrayList<Livraria> l) throws IOException {
         FileOutputStream fos = new FileOutputStream("dados.livraria");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -72,10 +78,9 @@ public class ES {
             try {
                 entrada = JOptionPane.showInputDialog(msg);
                 if (entrada.equals("")) {
-                    except = true;
-                    mostrarMensagem("O campo não deve ficar vazio");
+                    throw new CampoVazioException();
                 }
-            } catch (NullPointerException e) {
+            } catch (NullPointerException|CampoVazioException e) {
                 except = true;
                 mostrarMensagem("O campo não deve ficar vazio");
             }
