@@ -1,4 +1,8 @@
 import java.io.Serializable;
+/** 
+* Representa os dados cadastrais de uma empresa genérica. É herdada por
+* Fornecedor.
+*/
 
 public abstract class Empresa implements Serializable {
     private String cnpj;

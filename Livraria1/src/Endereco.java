@@ -1,5 +1,8 @@
 import java.io.Serializable;
 
+/**
+* Representação de um endereço.
+*/
 public class Endereco implements Serializable {
     private String endereco;
     private String bairro;

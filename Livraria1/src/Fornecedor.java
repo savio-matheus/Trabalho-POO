@@ -1,5 +1,8 @@
 import java.io.Serializable;
 
+/**
+* Representa os dados cadastrais de um fornecedor.
+*/
 public class Fornecedor extends Empresa implements Serializable {
     
     /** Construtor de Fornecedor

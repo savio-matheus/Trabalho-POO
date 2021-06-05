@@ -7,7 +7,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import java.io.IOException;
-
+/**
+* ES - Classe contendo as funções de entrada e saída, incluindo as de
+* persistência e telas ligadas a essas funções.
+*/
 public class ES {
     
     private static class CampoVazioException extends Exception {
