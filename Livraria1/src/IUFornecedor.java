@@ -2,6 +2,12 @@ import java.io.Serializable;
 
 public class IUFornecedor implements Serializable {
     
+    /** buscar
+    * Interface de usuário para buscar fornecedores.
+    * 
+    * @param l - livraria contendo uma ArrayList de fornecedores
+    * @return indice
+    */
     static int buscar(Livraria l) {
         while (true) {
             if (l.temFornecedor() == false) {
@@ -24,6 +30,11 @@ public class IUFornecedor implements Serializable {
         }
     }
     
+    /** alterar
+    * Interface de usuário para editar os dados de um fornecedor (encontrado na busca)
+    * 
+    * @param l - livraria contendo uma ArrayList de fornecedores
+    */
     static void alterar(Livraria l) {
         int i = buscar(l);
         
@@ -64,6 +75,11 @@ public class IUFornecedor implements Serializable {
         }
     }
     
+    /** excluir
+    * Interface para excluir um fornecedor.
+    * 
+    * @param l - livraria contendo uma ArrayList de fornecedores
+    */
     static void excluir(Livraria l) {
         while (true) {
             String cnpj = ES.entradaString("CNPJ do fornecedor a ser excluído [0 para sair]");
@@ -78,6 +94,12 @@ public class IUFornecedor implements Serializable {
         }
     }
     
+    /** adicionar
+    * Interface para cadastrar um novo fornecedor.
+    * 
+    * @param l - livraria contendo uma ArrayList de fornecedores.
+    * @return
+    */
     static void adicionar(Livraria l) {
         Endereco e = ES.escreverEndereco();
         
@@ -91,6 +113,11 @@ public class IUFornecedor implements Serializable {
         l.adicionarFornecedor(f);
     }
     
+    /** listar
+    * Exibe todos os fornecedores cadastrados.
+    * 
+    * @param l - livraria contendo uma ArrayList de fornecedores
+    */
     static void listar(Livraria l) {
         if (false == l.temFornecedor()) {
             ES.mostrarMensagem("Não há fornecedores cadastrados");

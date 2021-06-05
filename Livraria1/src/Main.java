@@ -1,6 +1,11 @@
 import java.io.IOException;
 import java.util.ArrayList;
-        
+
+/**Trabalho POO - Professora: Ana Cláudia Bastos
+ * @author Sávio Matheus de Sousa
+ * @author Talles Eduardo de Amaral Salles
+ */
+
 public class Main {
 
     public static void main(String[] args) {

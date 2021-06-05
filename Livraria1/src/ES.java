@@ -15,7 +15,11 @@ public class ES {
         public CampoVazioException() {
         }
     }
-    
+
+    /** salvarEstado
+    * Salva o objeto diretamente em um arquivo binário.
+    * @param ArrayList<Livraria> l - contém todos os dados do programa
+    */
     static void salvarEstado(ArrayList<Livraria> l) throws IOException {
         FileOutputStream fos = new FileOutputStream("dados.livraria");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -25,6 +29,11 @@ public class ES {
         fos.close();
     }
     
+    /** carregarEstado
+    * Lê o arquivo binário contendo os objetos e carrega na memória.
+    * 
+    * @return l - representa todos os dados do programa
+    */
     static ArrayList<Livraria> carregarEstado() throws IOException, ClassNotFoundException {
         ArrayList<Livraria> l;
         
@@ -38,6 +47,13 @@ public class ES {
         return l;
     }
     
+    /** entradaInt
+    * Chama o JOptionPane adicionando algumas facilidades, como tratamento de
+    * exceções e conversão automática para int.
+    * 
+    * @param msg - mensagem para o usuário.
+    * @return entrada - número inteiro válido digitado pelo usuário.
+    */
     static int entradaInt(String msg) {
         int entrada = 0;
         boolean except = true;
@@ -54,6 +70,13 @@ public class ES {
         return entrada;
     }
     
+    /** entradaDouble
+    * Chama o JOptionPane adicionando algumas facilidades, como tratamento de
+    * exceções e conversão automática para double.
+    * 
+    * @param msg - mensagem para o usuário.
+    * @return entrada - número real válido digitado pelo usuário.
+    */
     static double entradaDouble(String msg) {
         double entrada = 0;
         boolean except = true;
@@ -70,6 +93,13 @@ public class ES {
         return entrada;
     }
     
+    /** entradaString
+    * Chama o JOptionPane adicionando algumas facilidades, como tratamento de
+    * exceções.
+    * 
+    * @param msg - mensagem para o usuário.
+    * @return entrada - String válida digitada pelo usuário.
+    */
     static String entradaString(String msg) {
         String entrada = "";
         boolean except = true;
@@ -88,10 +118,20 @@ public class ES {
         return entrada;
     }
     
+    /** mostrarMensagem
+    * Envelopa a showMessageDialog().
+    * 
+    * @param msg - texto para exibição
+    */
     static void mostrarMensagem(String msg) {
         JOptionPane.showMessageDialog(null, msg);
     }
     
+    /** escreverEndereco()
+    * Facilita a criação de um objeto Endereco.
+    * 
+    * @return new Endereco() - objeto Endereco recém-criado.
+    */
     static Endereco escreverEndereco() {
         return new Endereco(
                 entradaString("Rua: "),

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class IULivraria implements Serializable {
     
+    /** acessar
+    * Acessa as funções ligadas ao gerenciamento de uma livraria.
+    * 
+    * @param lista de livrarias
+    */
     static void acessar(ArrayList<Livraria> lista) {
         String cnpj;
         int i;
@@ -46,6 +51,11 @@ public class IULivraria implements Serializable {
         }
     }
     
+    /** listar
+    * Exibe os dados todas as livrarias cadastradas.
+    * 
+    * @param lista de livrarias
+    */
     static void listar(ArrayList<Livraria> lista) {
         if (lista.size() == 0) {
             ES.mostrarMensagem("Não há livrarias cadastradas");
@@ -57,6 +67,11 @@ public class IULivraria implements Serializable {
         }
     }
     
+    /** adicionar
+    * Interface para cadastrar uma nova livraria.
+    * 
+    * @param lista de livrarias
+    */
     static void adicionar(ArrayList<Livraria> lista) {
         ES.mostrarMensagem("Informe a seguir o endereço da livraria");
         Endereco e = ES.escreverEndereco();
@@ -70,6 +85,11 @@ public class IULivraria implements Serializable {
         lista.add(l);
     }
     
+    /** remover
+    * Exclui uma livraria.
+    * 
+    * @param lista de livrarias
+    */
     static void remover(ArrayList<Livraria> lista) {
         String cnpj;
         int i;
@@ -101,6 +121,11 @@ public class IULivraria implements Serializable {
         return -1;
     }
     
+    /** buscarPorEndereco
+    * Procura uma livraria com base no endereço fornecido e exibe seus produtos.
+    * 
+    * @param lista de livrarias
+    */
     static void buscarPorEndereco(ArrayList<Livraria> lista) {
         if (lista.isEmpty()) {
             ES.mostrarMensagem("Não há livrarias cadastradas");
@@ -126,6 +151,11 @@ public class IULivraria implements Serializable {
         }
     }
     
+    /** alterar
+    * Interface para editar os dados de uma livraria.
+    * 
+    * @param lista de livrarias
+    */
     static void alterar(ArrayList<Livraria> lista) {
         String cnpj;
         int i;
@@ -178,6 +208,11 @@ public class IULivraria implements Serializable {
         }
     }
     
+    /** gerenciarProdutos
+    * Interface para acessar e alterar os produtos cadastrados.
+    * 
+    * @param l - livraria contendo a ArrayList de produtos
+    */
     private static void gerenciarProdutos(Livraria l) {
         int op = ES.entradaInt(
                 "O que você deseja fazer?\n"
@@ -216,6 +251,11 @@ public class IULivraria implements Serializable {
         }
     }
     
+    /** gerenciarFornecedores
+    * Interface para acessar e alterar os fornecedores cadastrados.
+    * 
+    * @param l - livraria contendo a ArrayList de fornecedores
+    */
     private static void gerenciarFornecedores(Livraria l) {
         while (true) {
             int op;
