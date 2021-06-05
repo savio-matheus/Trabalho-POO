@@ -4,17 +4,54 @@ import javax.swing.JOptionPane;
 public class ES {
     
     static int entradaInt(String msg) {
-        String valor = JOptionPane.showInputDialog(msg);
-        return Integer.parseInt(valor);
+        int entrada = 0;
+        boolean except = true;
+        while (except) {
+            try {
+                except = false;
+                String valor = JOptionPane.showInputDialog(msg);
+                entrada = Integer.parseInt(valor);
+            } catch (NumberFormatException  e) {
+                mostrarMensagem("O valor digitado não é um número inteiro");
+                except = true;
+            }
+        }
+        return entrada;
     }
     
     static double entradaDouble(String msg) {
-        String valor = JOptionPane.showInputDialog(msg);
-        return Double.parseDouble(valor);
+        double entrada = 0;
+        boolean except = true;
+        while (except) {
+            try {
+                except = false;
+                String valor = JOptionPane.showInputDialog(msg);
+                entrada = Integer.parseInt(valor);
+            } catch (NumberFormatException  e) {
+                mostrarMensagem("O valor digitado não é um número real");
+                except = true;
+            }
+        }
+        return entrada;
     }
     
     static String entradaString(String msg) {
-        return JOptionPane.showInputDialog(msg);
+        String entrada = "";
+        boolean except = true;
+        while (except) {
+            except = false;
+            try {
+                entrada = JOptionPane.showInputDialog(msg);
+                if (entrada.equals("")) {
+                    except = true;
+                    mostrarMensagem("O campo não deve ficar vazio");
+                }
+            } catch (NullPointerException e) {
+                except = true;
+                mostrarMensagem("O campo não deve ficar vazio");
+            }
+        }
+        return entrada;
     }
     
     static void mostrarMensagem(String msg) {
