@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public abstract class Empresa {
+public abstract class Empresa implements Serializable {
     protected String cnpj;
     protected String nome;
     protected String telefone;

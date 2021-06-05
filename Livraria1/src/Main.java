@@ -1,9 +1,14 @@
+import java.io.IOException;
 import java.util.ArrayList;
-
+        
 public class Main {
 
     public static void main(String[] args) {
         ArrayList<Livraria> livrarias = new ArrayList();
+        
+        try {
+            livrarias = ES.carregarEstado();
+        } catch(IOException|ClassNotFoundException e) {}
         
         ES.mostrarMensagem("Seja bem-vindo(a) ao gerenciador de livrarias");
         while (true) {
@@ -37,7 +42,12 @@ public class Main {
                     IULivraria.buscarPorEndereco(livrarias);
                     break;
                 case 7:
-                    // acionar função de salvamento antes de sair.
+                    try {
+                        ES.salvarEstado(livrarias);
+                    } catch (IOException e) {
+                        ES.mostrarMensagem("Não foi possível salvar");
+                        continue;
+                    }
                     return;
                 default:
                     ES.mostrarMensagem("Opção inválida");

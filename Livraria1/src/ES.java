@@ -1,7 +1,36 @@
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import java.io.IOException;
 
 public class ES {
+    
+    static void salvarEstado(ArrayList<Livraria> l) throws IOException {
+        FileOutputStream fos = new FileOutputStream("dados.livraria");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(l);
+        
+        oos.close();
+        fos.close();
+    }
+    
+    static ArrayList<Livraria> carregarEstado() throws IOException, ClassNotFoundException {
+        ArrayList<Livraria> l;
+        
+        FileInputStream fos = new FileInputStream("dados.livraria");
+        ObjectInputStream ois = new ObjectInputStream(fos);
+        l = (ArrayList<Livraria>) ois.readObject();
+        
+        ois.close();
+        fos.close();
+        
+        return l;
+    }
     
     static int entradaInt(String msg) {
         int entrada = 0;

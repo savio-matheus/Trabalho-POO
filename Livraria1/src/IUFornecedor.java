@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class IUFornecedor {
+public class IUFornecedor implements Serializable {
     
     static int buscar(Livraria l) {
         while (true) {

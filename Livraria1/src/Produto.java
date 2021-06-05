@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Produto {
+public class Produto implements Serializable {
     protected static int codigoGerado = 1;
     
     protected String nome;

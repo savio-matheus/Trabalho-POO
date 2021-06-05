@@ -1,7 +1,8 @@
+import java.io.Serializable;
 
 import java.util.ArrayList;
 
-public class IULivraria {
+public class IULivraria implements Serializable {
     
     static void acessar(ArrayList<Livraria> lista) {
         String cnpj;

@@ -1,6 +1,8 @@
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class Livraria extends Empresa {
+public class Livraria extends Empresa implements Serializable {
     
     protected ArrayList <Produto> produtos = new ArrayList();
     protected ArrayList <Fornecedor> fornecedores = new ArrayList();
