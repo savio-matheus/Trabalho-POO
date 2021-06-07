@@ -4,22 +4,22 @@ import java.io.Serializable;
 */
 
 public class Produto implements Serializable {
-    protected static int codigoGerado = 1;
+    protected static int codigoGerado = 0;
     
     protected String nome;
     protected int quantidade;
     protected double precoDeVenda;
-    protected int codigo = 0;
+    protected int codigo;
     protected double precoDeCusto;
     protected Fornecedor fornecedor;
     protected String dataUltimaCompra;
 
-    Produto(int codigo, String nome, double precoDeCusto, double precoDeVenda,
+    Produto(String nome, double precoDeCusto, double precoDeVenda,
             int quantidade, Fornecedor fornecedor, String dataUltimaCompra) {
     	this.nome = nome;
     	this.quantidade = quantidade;
     	this.precoDeVenda = precoDeVenda;
-    	this.codigo = codigo;
+    	this.codigo = this.incrementaCodigo();
         this.precoDeCusto = precoDeCusto;
         this.fornecedor = fornecedor;
         this.dataUltimaCompra = dataUltimaCompra;
@@ -153,8 +153,9 @@ public class Produto implements Serializable {
  
 /** Método que incrementa o código do produto automaticamente.
  */
-    public static void incrementaCodigo() {
+    private int incrementaCodigo() {
         Produto.codigoGerado++;
+        return Produto.codigoGerado;
     }
 
  /** Método que atribui mostra todos os atributos de determinado produto.

@@ -158,7 +158,6 @@ public class IUProduto implements Serializable {
 
         ES.mostrarMensagem("Cadastre a seguir os dados do produto");
             Produto p = new Produto(
-                    Produto.codigoGerado,
                     ES.entradaString("Nome"),
                     ES.entradaDouble("Preço de Custo"),
                     ES.entradaDouble("Preço de Venda"),
@@ -166,7 +165,6 @@ public class IUProduto implements Serializable {
                     l.getFornecedor(i),
                     ES.entradaString("Data da compra")
             );
-            Produto.incrementaCodigo();
             
             l.adicionarProduto(p);
     }
