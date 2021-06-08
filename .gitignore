@@ -24,3 +24,6 @@ hs_err_pid*
 /Livraria1/build/
 /Livraria1/nbproject/private/
 /Livraria1/dist/
+
+# Outros
+*.livraria
