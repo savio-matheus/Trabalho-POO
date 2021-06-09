@@ -1,10 +1,9 @@
-import java.io.Serializable;
 
 /**
 * Contém as interfaces de usuário para adicionar, remover, listar, editar e
 * buscar fornecedores.
 */
-public class IUFornecedor implements Serializable {
+public class IUFornecedor {
     
     /** buscar
     * Interface de usuário para buscar fornecedores.

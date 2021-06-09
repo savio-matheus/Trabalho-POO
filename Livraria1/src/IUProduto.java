@@ -3,7 +3,7 @@ import java.io.Serializable;
 /** Classe que acessa funções para gerenciamento de produtos.
  * 
  */
-public class IUProduto implements Serializable {
+public class IUProduto {
     
 /** Método que busca um determinado produto em uma lista dentro de Livraria.
 * Interface de usuário para buscar produtos.

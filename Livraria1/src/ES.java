@@ -87,7 +87,7 @@ public class ES {
             try {
                 except = false;
                 String valor = JOptionPane.showInputDialog(msg);
-                entrada = Integer.parseInt(valor);
+                entrada = Double.parseDouble(valor);
             } catch (NumberFormatException  e) {
                 mostrarMensagem("O valor digitado não é um número real");
                 except = true;

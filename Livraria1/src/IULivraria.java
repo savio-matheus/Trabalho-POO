@@ -1,12 +1,10 @@
-import java.io.Serializable;
-
 import java.util.ArrayList;
 
 /**
 * Contém as interface de usuário para adicionar, remover, editar, listar e
 * buscar livrarias.
 */
-public class IULivraria implements Serializable {
+public class IULivraria {
     
     /** acessar
     * Acessa as funções ligadas ao gerenciamento de uma livraria.
