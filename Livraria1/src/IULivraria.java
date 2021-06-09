@@ -216,6 +216,11 @@ public class IULivraria {
     * @param l - livraria contendo a ArrayList de produtos
     */
     private static void gerenciarProdutos(Livraria l) {
+        // Veja javadoc do método.
+        // Pegar a quantidade de Produtos na ArrayList garante que o
+        // código seja sempre sequencial.
+        Produto.setUltimoCodigoGerado(l.getQuantidadeProdutos());
+        
         int op = ES.entradaInt(
                 "O que você deseja fazer?\n"
                 + "0. Voltar\n"

@@ -157,6 +157,18 @@ public class Produto implements Serializable {
         Produto.codigoGerado++;
         return Produto.codigoGerado;
     }
+    
+/**
+ * Método estático auxiliar para atualizar o valor de codigoGerado.
+ * A desserialização não armazena os valores atuais das variáveis estáticas,
+ * de modo que, ao serializar os objetos, o valor de codigoGerado volta para
+ * o que foi definido na inicialização: codigoGerado = 0. Isso faz com que os
+ * produtos repitam códigos entre uma sessão e outra do programa.
+ * @param cod 
+ */
+    static void setUltimoCodigoGerado(int cod) {
+        Produto.codigoGerado = cod;
+    }
 
  /** Método que atribui mostra todos os atributos de determinado produto.
  * 
